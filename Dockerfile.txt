@@ -1,0 +1,23 @@
+# Use official Python image
+FROM python:3.10-slim
+
+
+# create app directory
+WORKDIR /app
+
+
+# copy files
+COPY . /app
+
+
+# install dependencies
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+
+# expose streamlit port
+EXPOSE 8501
+
+
+# default command
+CMD ["streamlit", "run", "depot_app.py", "--server.port=8501", "--server.headless=true"]
